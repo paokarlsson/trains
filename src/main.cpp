@@ -11,12 +11,10 @@
 int main() {
   {
     try {
-      App app("../../../../_Resources/Project/TrainStations.txt",
-              "../../../../_Resources/Project/Trains.txt",
-              "../../../../_Resources/Project/TrainMap.txt");
-      // App app("../../_Resources/Project/TrainStations.txt",
-      // "../../_Resources/Project/Trains.txt",
-      // "../../_Resources/Project/TrainMap.txt");
+      App app("../train-data/TrainStations.txt",
+              "../train-data/Trains.txt",
+              "../train-data/TrainMap.txt");
+
       app.Run();
     } catch (const std::exception& e) {
       std::cout << e.what() << "\n";
