@@ -21,7 +21,7 @@ class TrainTime {
   static std::string Time_tToString(time_t time_stamp) {
     time_t t = time_stamp + (60 * 60);  // Daylight saving hack
     std::tm t_struct{};
-    gmtime_s(&t_struct, &t);
+    gmtime_r(&t,&t_struct);
     std::ostringstream oss;
     oss << std::setw(2) << std::setfill('0') << t_struct.tm_hour << ":"
         << std::setw(2) << std::setfill('0') << t_struct.tm_min;

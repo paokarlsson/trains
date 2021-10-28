@@ -5,6 +5,7 @@
 
 #include "simulator.h"  //NOLINT
 
+#include <algorithm>
 #include <fstream>
 
 #include "event.h"        //NOLINT
@@ -18,7 +19,7 @@
 void Simulator::setupTime() {
   time_t now = time(nullptr);
   std::tm t_struct{};
-  gmtime_s(&t_struct, &now);
+  gmtime_r(&now, &t_struct);
   t_struct.tm_hour = 0;
   t_struct.tm_min = 0;
   t_struct.tm_sec = 0;

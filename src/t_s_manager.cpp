@@ -95,7 +95,7 @@ void TrainStationManager::loadTrains(const std::string &path) {
           std::get_time(&time2, "%H:%M") >> max_speed;
       time_t today = time(nullptr);
       std::tm todayStruct{};
-      gmtime_s(&todayStruct, &today);
+      gmtime_r(&today,&todayStruct);
       todayStruct.tm_hour = time1.tm_hour;
       todayStruct.tm_min = time1.tm_min;
       todayStruct.tm_sec = 0;
@@ -226,7 +226,7 @@ std::shared_ptr<Station> TrainStationManager::GetStationByName(
   if (it != stations_.end()) {
     return *it;
   } else {
-    throw std::exception("There is no station with that name");
+    throw std::runtime_error("There is no station with that name");
   }
 }
 
@@ -242,7 +242,7 @@ std::shared_ptr<Train> TrainStationManager::GetTrainByTrainNumber(int number) {
   if (it != trains_.end()) {
     return *it;
   } else {
-    throw std::exception("There is no train with that name");
+    throw std::runtime_error("There is no train with that name");
   }
 }
 
@@ -293,7 +293,7 @@ std::string TrainStationManager::GetTrainDetailsByTrainNumber(
   if (it != trains_.end()) {
     return details;
   } else {
-    throw std::exception("There is no train with this number");
+    throw std::runtime_error("There is no train with this number");
   }
 }
 
@@ -329,7 +329,7 @@ std::shared_ptr<Vehicle> TrainStationManager::FindVehicle(
   if (it2 != trains_.end()) {
     return vehicle_out;
   } else {
-    throw std::exception("This vehicle id does not exists");
+    throw std::runtime_error("This vehicle id does not exists");
   }
 }
 
@@ -518,7 +518,7 @@ std::string TrainStationManager::GetTrainDetailsByVehicleId(int vehicle_id) {
   if (it != trains_.end()) {
     return details;
   } else {
-    throw std::exception("Could not find a train containing this vehicle.");
+    throw std::runtime_error("Could not find a train containing this vehicle.");
   }
 }
 

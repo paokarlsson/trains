@@ -408,7 +408,7 @@ time_t App::inputTime() {
 
     time_t today = time(nullptr);
     std::tm todayStruct{};
-    gmtime_s(&todayStruct, &today);
+    gmtime_r(&today, &todayStruct);
     todayStruct.tm_hour = time_struct.tm_hour;
     todayStruct.tm_min = time_struct.tm_min;
     todayStruct.tm_sec = 0;
